@@ -1,0 +1,14 @@
+[
+  {
+    "nome": "Certificação Python",
+    "descricao": "Curso introdutório de Python.",
+    "ano": 2024,
+    "instituicao": "Universidade Lusófona"
+  },
+  {
+    "nome": "Curso Docker",
+    "descricao": "Curso de containers e deployment de aplicações.",
+    "ano": 2025,
+    "instituicao": "Coursera"
+  }
+]
