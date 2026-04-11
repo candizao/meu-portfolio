@@ -1,0 +1,6 @@
+[
+  {"nome": "Kotlin", "logo": "", "website": "https://kotlinlang.org", "nivel_interesse": "Alto"},
+  {"nome": "Java", "logo": "", "website": "https://www.java.com", "nivel_interesse": "Alto"},
+  {"nome": "C", "logo": "", "website": "https://en.cppreference.com/w/", "nivel_interesse": "Médio"},
+  {"nome": "SQL", "logo": "", "website": "https://www.sqlite.org", "nivel_interesse": "Médio"}
+]
