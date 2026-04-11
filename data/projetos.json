@@ -1,0 +1,34 @@
+[
+  {
+    "titulo": "Batalha Naval",
+    "descricao": "Projeto da Unidade de Fundamentos de Programação: Batalha Naval em Kotlin.",
+    "unidade_curricular_codigo": "INF104",
+    "tecnologias": ["Kotlin"],
+    "imagem": "",
+    "video_demo": ""
+  },
+  {
+    "titulo": "DEISI IMDB",
+    "descricao": "Projeto da Unidade de Algoritmia e Estruturas de Dados: sistema de filmes em Java.",
+    "unidade_curricular_codigo": "INF201",
+    "tecnologias": ["Java"],
+    "imagem": "",
+    "video_demo": ""
+  },
+  {
+    "titulo": "Base de Dados",
+    "descricao": "Projeto da Unidade de Bases de Dados: criação de base de dados em SQL.",
+    "unidade_curricular_codigo": "INF301",
+    "tecnologias": ["SQL"],
+    "imagem": "",
+    "video_demo": ""
+  },
+  {
+    "titulo": "Mini Jogo Mortal Combat",
+    "descricao": "Projeto da Unidade de Programação 1: mini jogo em C.",
+    "unidade_curricular_codigo": "INF204",
+    "tecnologias": ["C"],
+    "imagem": "",
+    "video_demo": ""
+  }
+]
