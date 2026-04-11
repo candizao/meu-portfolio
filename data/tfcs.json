@@ -1,0 +1,20 @@
+[
+  {
+    "titulo": "TFC Exemplo 1",
+    "descricao": "Exemplo de TFC para testar o site. Inclui Python e Django.",
+    "ano": 2025,
+    "tecnologias": ["Python", "Django"]
+  },
+  {
+    "titulo": "TFC Exemplo 2",
+    "descricao": "Outro TFC de exemplo. Frontend com HTML e CSS.",
+    "ano": 2025,
+    "tecnologias": ["HTML", "CSS"]
+  },
+  {
+    "titulo": "TFC Exemplo 3",
+    "descricao": "TFC com base de dados e análise de dados.",
+    "ano": 2025,
+    "tecnologias": ["SQL", "Pandas"]
+  }
+]
