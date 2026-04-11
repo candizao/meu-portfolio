@@ -1,0 +1,25 @@
+[
+  {"codigo": "INF101", "nome": "Contabilidade", "ano": 2024, "semestre": 1, "docente": "Dr. João Silva", "imagem": ""},
+  {"codigo": "INF102", "nome": "Fundamentos de Sistemas de Informação", "ano": 2024, "semestre": 1, "docente": "Dr. Pedro Santos", "imagem": ""},
+  {"codigo": "INF103", "nome": "Matemática I", "ano": 2024, "semestre": 1, "docente": "Dra. Ana Costa", "imagem": ""},
+  {"codigo": "INF104", "nome": "Teoria e Prática de Marketing", "ano": 2024, "semestre": 1, "docente": "Dr. Luís Martins", "imagem": ""},
+  
+  {"codigo": "INF201", "nome": "Algoritmia e Estruturas de Dados", "ano": 2024, "semestre": 2, "docente": "Dra. Carla Ribeiro", "imagem": ""},
+  {"codigo": "INF202", "nome": "Cálculo Financeiro", "ano": 2024, "semestre": 2, "docente": "Dr. Manuel Silva", "imagem": ""},
+  {"codigo": "INF203", "nome": "Competências Comportamentais", "ano": 2024, "semestre": 2, "docente": "Dra. Sofia Almeida", "imagem": ""},
+  {"codigo": "INF204", "nome": "Fundamentos de Programação", "ano": 2024, "semestre": 2, "docente": "Dr. João Silva", "imagem": ""},
+  {"codigo": "INF205", "nome": "Linguagens de Programação I", "ano": 2024, "semestre": 2, "docente": "Dra. Ana Costa", "imagem": ""},
+  
+  {"codigo": "INF301", "nome": "Bases de Dados", "ano": 2025, "semestre": 1, "docente": "Dr. Pedro Santos", "imagem": ""},
+  {"codigo": "INF302", "nome": "Direito Informático", "ano": 2025, "semestre": 1, "docente": "Dra. Carla Ribeiro", "imagem": ""},
+  {"codigo": "INF303", "nome": "Instrumentos de Gestão", "ano": 2025, "semestre": 1, "docente": "Dr. Luís Martins", "imagem": ""},
+  {"codigo": "INF304", "nome": "Motivação e Liderança", "ano": 2025, "semestre": 1, "docente": "Dra. Sofia Almeida", "imagem": ""},
+  {"codigo": "INF305", "nome": "Programação Low-Code e No-Code", "ano": 2025, "semestre": 1, "docente": "Dr. João Silva", "imagem": ""},
+  {"codigo": "INF306", "nome": "Sistemas Operativos", "ano": 2025, "semestre": 1, "docente": "Dra. Ana Costa", "imagem": ""},
+  
+  {"codigo": "INF401", "nome": "Engenharia de Requisitos e Testes", "ano": 2025, "semestre": 2, "docente": "Dr. Pedro Santos", "imagem": ""},
+  {"codigo": "INF402", "nome": "Gestão Financeira", "ano": 2025, "semestre": 2, "docente": "Dra. Carla Ribeiro", "imagem": ""},
+  {"codigo": "INF403", "nome": "Programação Web", "ano": 2025, "semestre": 2, "docente": "Dra. Sofia Almeida", "imagem": ""},
+  {"codigo": "INF404", "nome": "Redes de Computadores", "ano": 2025, "semestre": 2, "docente": "Dr. Luís Martins", "imagem": ""},
+  {"codigo": "INF405", "nome": "Sistemas de Suporte à Decisão", "ano": 2025, "semestre": 2, "docente": "Dr. João Silva", "imagem": ""}
+]
