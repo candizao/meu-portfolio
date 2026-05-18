@@ -30,7 +30,6 @@
       line-height: 1.7;
     }
 
-    /* NAV */
     nav {
       position: sticky; top: 0; z-index: 10;
       background: rgba(15,15,17,0.9);
@@ -57,29 +56,17 @@
     }
     .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
 
-    /* LAYOUT */
     .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
     section { padding: 48px 0; border-bottom: 0.5px solid var(--border); }
     section:last-of-type { border-bottom: none; }
 
-    /* HERO */
     #hero { padding: 56px 0 48px; }
-    .badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-size: 11px; color: var(--accent);
-      margin-bottom: 16px;
-    }
+    .badge { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; color: var(--accent); margin-bottom: 16px; }
     .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-    #hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 500;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
+    #hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 500; line-height: 1.1; color: var(--text); margin-bottom: 12px; letter-spacing: -0.02em; }
     #hero h1 em { font-style: normal; color: var(--accent); }
     #hero p { color: var(--muted); max-width: 380px; font-size: 13px; margin-bottom: 20px; }
+
     .btn {
       display: inline-block;
       padding: 7px 16px;
@@ -89,6 +76,8 @@
       font-weight: 500;
       text-decoration: none;
       border-radius: 5px;
+      border: none;
+      cursor: pointer;
       transition: opacity .15s;
     }
     .btn:hover { opacity: 0.85; }
@@ -100,12 +89,10 @@
     }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
 
-    /* SECTION HEADER */
     .sec-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 20px; }
     .sec-num { font-size: 11px; color: var(--accent); }
     h2 { font-size: 18px; font-weight: 500; color: var(--text); }
 
-    /* PROJECTS */
     .project-list { display: flex; flex-direction: column; gap: 8px; }
     .project-card {
       background: var(--surface);
@@ -120,30 +107,15 @@
     .project-card h3 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
     .project-card p { font-size: 12px; color: var(--muted); }
     .tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
-    .tag {
-      font-size: 10px; padding: 2px 8px;
-      background: rgba(200,245,90,0.07);
-      color: var(--accent);
-      border-radius: 3px;
-    }
+    .tag { font-size: 10px; padding: 2px 8px; background: rgba(200,245,90,0.07); color: var(--accent); border-radius: 3px; }
     .proj-links { display: flex; gap: 10px; white-space: nowrap; flex-shrink: 0; }
     .proj-links a { font-size: 12px; color: var(--accent); text-decoration: none; }
     .proj-links a:hover { text-decoration: underline; }
 
-    /* TECH */
     .tech-grid { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tech-badge {
-      font-size: 12px;
-      padding: 5px 12px;
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: 5px;
-      color: var(--text);
-      transition: border-color .15s, color .15s;
-    }
+    .tech-badge { font-size: 12px; padding: 5px 12px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 5px; color: var(--text); transition: border-color .15s, color .15s; }
     .tech-badge:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* TIMELINE */
     .timeline { display: flex; flex-direction: column; gap: 16px; }
     .tl-row { display: flex; gap: 12px; }
     .tl-left { display: flex; flex-direction: column; align-items: center; padding-top: 5px; }
@@ -154,56 +126,23 @@
     .tl-name { font-size: 13px; font-weight: 500; color: var(--text); }
     .tl-sub { font-size: 12px; color: var(--muted); }
 
-    /* TFC CARDS */
     .tfc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 8px; }
-    .tfc-card {
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: 8px;
-      padding: 14px;
-      text-decoration: none;
-      display: block;
-      transition: border-color .15s;
-    }
+    .tfc-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; padding: 14px; text-decoration: none; display: block; transition: border-color .15s; }
     .tfc-card:hover { border-color: rgba(200,245,90,0.3); }
     .tfc-card h3 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 5px; }
     .tfc-card p { font-size: 12px; color: var(--muted); }
-    .tfc-meta {
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 0.5px solid var(--border);
-      font-size: 11px;
-      color: var(--muted);
-      display: flex; gap: 12px;
-    }
+    .tfc-meta { margin-top: 10px; padding-top: 8px; border-top: 0.5px solid var(--border); font-size: 11px; color: var(--muted); display: flex; gap: 12px; }
 
-    /* UCS */
     .uc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 8px; }
-    .uc-card {
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 14px;
-      text-decoration: none;
-      display: block;
-      transition: border-color .15s;
-    }
+    .uc-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; padding: 12px 14px; text-decoration: none; display: block; transition: border-color .15s; }
     .uc-card:hover { border-color: rgba(200,245,90,0.3); }
     .uc-card .uc-code { font-size: 10px; color: var(--accent); margin-bottom: 3px; }
     .uc-card h3 { font-size: 13px; font-weight: 500; color: var(--text); }
     .uc-card p { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 11px;
-      color: var(--muted);
-      border-top: 0.5px solid var(--border);
-    }
+    footer { text-align: center; padding: 20px; font-size: 11px; color: var(--muted); border-top: 0.5px solid var(--border); }
     footer a { color: var(--accent); text-decoration: none; }
 
-    /* EMPTY STATE */
     .empty { font-size: 12px; color: var(--muted); padding: 8px 0; }
 
     @media (max-width: 580px) {
@@ -224,7 +163,15 @@
       <li><a href="{% url 'home' %}#tecnologias">Tecnologias</a></li>
       <li><a href="{% url 'home' %}#formacao">Formação</a></li>
       <li><a href="{% url 'home' %}#tfcs">TFCs</a></li>
+      <li><a href="{% url 'artigos_lista' %}">Artigos</a></li>
     </ul>
+
+    {% if user.is_authenticated %}
+      <span style="font-size:12px;color:var(--muted);">{{ user.username }}</span>
+      <a href="{% url 'logout' %}" class="btn btn-ghost" style="font-size:12px;padding:5px 12px;margin-left:0;">Sair</a>
+    {% else %}
+      <a href="{% url 'login' %}" class="btn btn-ghost" style="font-size:12px;padding:5px 12px;margin-left:0;">Entrar</a>
+    {% endif %}
   </nav>
 
   <div class="container">
@@ -233,7 +180,12 @@
   </div>
 
   <footer>
-    <p>© 2026 GC1412 · <a href="https://github.com/GC1412" target="_blank">GitHub</a> · Feito com Django</p>
+    <p>© 2026 GC1412 · <a href="https://github.com/candizao/meu-portfolio" target="_blank">GitHub</a> · Feito com Django</p>
+    <p style="margin-top:8px;">
+      <a href="{% url 'sobre' %}" style="color:var(--muted);font-size:11px;text-decoration:none;border:0.5px solid rgba(255,255,255,0.1);padding:4px 12px;border-radius:4px;">
+        Sobre esta aplicação →
+      </a>
+    </p>
   </footer>
 
 </body>

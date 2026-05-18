@@ -1,0 +1,42 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<section>
+  <div class="sec-head" style="margin-bottom:24px;">
+    <h2>Artigos</h2>
+    {% if is_autor %}
+      <a href="{% url 'artigo_criar' %}" class="btn" style="margin-left:auto;font-size:11px;padding:5px 12px;">+ Novo Artigo</a>
+    {% endif %}
+  </div>
+
+  {% if artigos %}
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      {% for artigo in artigos %}
+      <a href="{% url 'artigo_detalhe' artigo.pk %}" style="text-decoration:none;">
+        <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:20px;transition:border-color .15s;" onmouseover="this.style.borderColor='rgba(200,245,90,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          {% if artigo.fotografia %}
+            <img src="{{ artigo.fotografia.url }}" alt="{{ artigo.titulo }}" style="width:100%;max-height:200px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+          {% endif %}
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <div>
+              <h3 style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px;">{{ artigo.titulo }}</h3>
+              <p style="font-size:12px;color:var(--muted);">{{ artigo.texto|truncatewords:30 }}</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;margin-top:12px;font-size:11px;color:var(--muted);">
+            <span>{{ artigo.autor.username }}</span>
+            <span>{{ artigo.data_criacao|date:"d M Y" }}</span>
+            <span>❤ {{ artigo.total_likes }}</span>
+            <span>💬 {{ artigo.comentarios.count }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="font-size:12px;color:var(--muted);">Nenhum artigo publicado ainda.
+      {% if is_autor %}<a href="{% url 'artigo_criar' %}" style="color:var(--accent);">Escrever o primeiro →</a>{% endif %}
+    </p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,6 +1,32 @@
-# Ignorar caches do Python
+# Python
 __pycache__/
 *.pyc
+*.pyo
 
-# Ignorar base de dados local
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Django
 db.sqlite3
+db.sqlite3-journal
+
+# Environment (segredos)
+.env
+.env.local
+
+# Media (usamos Cloudinary)
+media/
+
+# Dumps de BD (podem ter dados sensíveis)
+dados.json
+*.dump
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

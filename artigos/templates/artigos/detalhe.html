@@ -1,0 +1,86 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<section>
+
+  <!-- CABEÇALHO -->
+  <div style="margin-bottom:24px;">
+    <a href="{% url 'artigos_lista' %}" style="font-size:12px;color:var(--muted);text-decoration:none;">← Artigos</a>
+  </div>
+
+  {% if artigo.fotografia %}
+    <img src="{{ artigo.fotografia.url }}" alt="{{ artigo.titulo }}" style="width:100%;max-height:340px;object-fit:cover;border-radius:8px;margin-bottom:24px;">
+  {% endif %}
+
+  <h1 style="font-size:24px;font-weight:500;color:var(--text);margin-bottom:10px;">{{ artigo.titulo }}</h1>
+
+  <div style="display:flex;gap:16px;font-size:12px;color:var(--muted);margin-bottom:24px;align-items:center;">
+    <span>{{ artigo.autor.username }}</span>
+    <span>{{ artigo.data_criacao|date:"d M Y" }}</span>
+    {% if is_autor and artigo.autor == request.user %}
+      <a href="{% url 'artigo_editar' artigo.pk %}" style="color:var(--accent);text-decoration:none;margin-left:auto;">Editar</a>
+    {% endif %}
+  </div>
+
+  <div style="font-size:14px;color:var(--text);line-height:1.8;margin-bottom:24px;white-space:pre-wrap;">{{ artigo.texto }}</div>
+
+  {% if artigo.link_externo %}
+    <a href="{{ artigo.link_externo }}" target="_blank" style="font-size:12px;color:var(--accent);">Ver link externo ↗</a>
+  {% endif %}
+
+  <!-- LIKES -->
+  <div style="margin-top:32px;padding-top:24px;border-top:0.5px solid var(--border);">
+    <a href="{% url 'artigo_like' artigo.pk %}" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:var(--surface);border:0.5px solid {% if ja_deu_like %}var(--accent){% else %}var(--border){% endif %};border-radius:6px;padding:8px 16px;font-size:13px;color:{% if ja_deu_like %}var(--accent){% else %}var(--muted){% endif %};transition:all .15s;">
+      ❤ {{ artigo.total_likes }} {% if ja_deu_like %}Gostei{% else %}Gostar{% endif %}
+    </a>
+  </div>
+
+  <!-- COMENTÁRIOS -->
+  <div style="margin-top:32px;padding-top:24px;border-top:0.5px solid var(--border);">
+    <h3 style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:16px;">Comentários ({{ artigo.comentarios.count }})</h3>
+
+    {% for comentario in comentarios %}
+    <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:6px;padding:12px 14px;margin-bottom:10px;">
+      <div style="display:flex;gap:10px;font-size:11px;color:var(--muted);margin-bottom:6px;">
+        <span style="color:var(--accent);">{{ comentario.autor.username }}</span>
+        <span>{{ comentario.data_criacao|date:"d M Y, H:i" }}</span>
+      </div>
+      <p style="font-size:13px;color:var(--text);">{{ comentario.texto }}</p>
+    </div>
+    {% empty %}
+      <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">Nenhum comentário ainda. Sê o primeiro!</p>
+    {% endfor %}
+
+    <!-- FORM COMENTÁRIO -->
+    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'artigo_comentar' artigo.pk %}" style="margin-top:16px;display:flex;flex-direction:column;gap:10px;">
+      {% csrf_token %}
+      {{ form_comentario.texto }}
+      <button type="submit" class="btn" style="width:fit-content;">Comentar</button>
+    </form>
+    {% else %}
+    <p style="font-size:12px;color:var(--muted);margin-top:16px;">
+      <a href="{% url 'login' %}" style="color:var(--accent);">Entra</a> para deixar um comentário.
+    </p>
+    {% endif %}
+  </div>
+
+</section>
+
+<style>
+  textarea {
+    width: 100%;
+    background: var(--surface);
+    border: 0.5px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 8px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    resize: vertical;
+    transition: border-color .15s;
+  }
+  textarea:focus { border-color: var(--accent); }
+</style>
+{% endblock %}

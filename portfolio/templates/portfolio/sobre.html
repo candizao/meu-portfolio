@@ -1,0 +1,182 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+  <!-- SOBRE -->
+  <section id="sobre-hero">
+    <div class="badge"><div class="badge-dot"></div>Documentação técnica</div>
+    <h1>Sobre esta <em>Aplicação</em></h1>
+    <p style="color:var(--muted);max-width:480px;font-size:13px;margin-top:10px;">
+      Detalhes técnicos, arquitetura, modelação e registo do processo de desenvolvimento deste portfólio.
+    </p>
+  </section>
+
+  <!-- 1. ARQUITETURA MVT -->
+  <section id="arquitetura">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Arquitetura MVT do Django</h2></div>
+
+    <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">
+      O Django segue o padrão MVT (Model–View–Template), uma variante do padrão MVC.
+      O <strong style="color:var(--text);">Model</strong> define a estrutura dos dados e interage com a base de dados.
+      A <strong style="color:var(--text);">View</strong> contém a lógica de negócio e decide o que mostrar.
+      O <strong style="color:var(--text);">Template</strong> é o HTML que é renderizado e enviado ao browser.
+    </p>
+
+    <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:20px;margin-bottom:20px;">
+      <p style="font-size:12px;color:var(--muted);text-align:center;">
+        📷 Fotografia do diagrama MVT em papel será inserida aqui.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:24px;">
+      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:14px;">
+        <p style="font-size:12px;font-weight:500;color:var(--accent);margin-bottom:6px;">Model</p>
+        <p style="font-size:12px;color:var(--muted);">Define as tabelas da base de dados. Cada classe em models.py corresponde a uma tabela SQLite.</p>
+      </div>
+      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:14px;">
+        <p style="font-size:12px;font-weight:500;color:var(--accent);margin-bottom:6px;">View</p>
+        <p style="font-size:12px;color:var(--muted);">Recebe o pedido HTTP, consulta os models, prepara o contexto e devolve o template renderizado.</p>
+      </div>
+      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:14px;">
+        <p style="font-size:12px;font-weight:500;color:var(--accent);margin-bottom:6px;">Template</p>
+        <p style="font-size:12px;color:var(--muted);">Ficheiro HTML com tags Django que renderiza os dados recebidos da view para o utilizador.</p>
+      </div>
+      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:14px;">
+        <p style="font-size:12px;font-weight:500;color:var(--accent);margin-bottom:6px;">URL Dispatcher</p>
+        <p style="font-size:12px;color:var(--muted);">O urls.py faz o mapeamento entre os endereços web e as views correspondentes.</p>
+      </div>
+    </div>
+
+    <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">Vídeo tutorial — criar uma página com formulário:</p>
+    <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:20px;text-align:center;">
+      <p style="font-size:12px;color:var(--muted);">🎬 Vídeo tutorial será inserido aqui como iframe.</p>
+      <!-- Quando tiveres o link do vídeo, substitui por:
+      <iframe width="100%" height="360" src="https://www.youtube.com/embed/SEU_ID_AQUI"
+        frameborder="0" allowfullscreen style="border-radius:6px;"></iframe>
+      -->
+    </div>
+  </section>
+
+  <!-- 2. MODELAÇÃO -->
+  <section id="modelacao">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Modelação</h2></div>
+
+    <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">
+      Diagrama entidade-relação e a modelação em <code style="background:var(--surface2);padding:2px 6px;border-radius:3px;font-size:11px;">models.py</code>.
+    </p>
+
+    <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:20px;margin-bottom:16px;text-align:center;">
+      <p style="font-size:12px;color:var(--muted);">📷 Diagrama ER em papel será inserido aqui.</p>
+    </div>
+
+    <pre style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:16px;font-size:11px;color:var(--muted);overflow-x:auto;line-height:1.6;">
+Licenciatura ──── UnidadeCurricular ──── Projeto ────┐
+     │                                    │           │
+     └──── TFC                      Tecnologia ───────┘
+                                          │
+                               TipoTecnologia
+
+Competencia ◇──── Projeto
+            ◇──── Tecnologia
+            ◇──── Formacao
+    </pre>
+  </section>
+
+  <!-- 3. TECNOLOGIAS -->
+  <section id="tecnologias-sobre">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Tecnologias Usadas</h2></div>
+
+    {% for tipo in tipos %}
+      {% if tipo.tecnologias.all %}
+      <div style="margin-bottom:24px;">
+        <p style="font-size:11px;color:var(--accent);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;">
+          {{ tipo }}
+        </p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {% for tec in tipo.tecnologias.all %}
+          <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+              <span style="font-size:13px;font-weight:500;color:var(--text);">{{ tec.nome }}</span>
+              {% if tec.website %}
+                <a href="{{ tec.website }}" target="_blank" style="font-size:11px;color:var(--accent);text-decoration:none;">↗</a>
+              {% endif %}
+            </div>
+            {% if tec.descricao %}
+              <p style="font-size:12px;color:var(--muted);">{{ tec.descricao }}</p>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    {% empty %}
+      <p style="font-size:13px;color:var(--muted);">
+        Ainda sem tecnologias. Adiciona tecnologias com tipo em <a href="{% url 'tecnologia_criar' %}" style="color:var(--accent);">Adicionar Tecnologia →</a>
+      </p>
+    {% endfor %}
+  </section>
+
+  <!-- 4. ESTRUTURA DE NAVEGAÇÃO -->
+  <section id="navegacao">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Estrutura de Navegação</h2></div>
+    <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:20px;text-align:center;margin-bottom:16px;">
+      <p style="font-size:12px;color:var(--muted);">📷 Mapa de navegação será inserido aqui.</p>
+    </div>
+    <pre style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:16px;font-size:11px;color:var(--muted);overflow-x:auto;line-height:1.8;">
+/ (home)
+├── /projeto/criar/
+├── /projeto/&lt;pk&gt;/editar/
+├── /projeto/&lt;pk&gt;/apagar/
+├── /uc/&lt;pk&gt;/
+├── /tecnologia/criar/
+├── /tecnologia/&lt;pk&gt;/editar/
+├── /tecnologia/&lt;pk&gt;/apagar/
+├── /competencia/criar/
+├── /formacao/criar/
+├── /tfc/&lt;pk&gt;/
+└── /sobre/
+    </pre>
+  </section>
+
+  <!-- 5. GITHUB -->
+  <section id="github">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Repositório GitHub</h2></div>
+    <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;">
+      <div>
+        <p style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;">candizao/meu-portfolio</p>
+        <p style="font-size:12px;color:var(--muted);">Repositório do portfólio de Programação Web</p>
+      </div>
+      <a href="https://github.com/candizao/meu-portfolio" target="_blank" class="btn" style="white-space:nowrap;">Ver no GitHub ↗</a>
+    </div>
+    <p style="font-size:13px;color:var(--muted);max-width:580px;line-height:1.7;">
+      O Git e o GitHub foram usados para controlo de versões ao longo do desenvolvimento.
+      Cada funcionalidade implementada foi registada com um commit descritivo, permitindo
+      acompanhar a evolução do projeto e recuperar versões anteriores se necessário.
+      O GitHub Codespaces foi ainda usado como ambiente de desenvolvimento diretamente no browser,
+      eliminando a necessidade de configuração local.
+    </p>
+  </section>
+
+  <!-- 6. MAKING OF -->
+  <section id="makingof">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Making Of</h2></div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">
+      Registo do processo de desenvolvimento — dificuldades, decisões e aprendizagens.
+    </p>
+    {% for item in makingof %}
+    <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:14px;margin-bottom:8px;">
+      <p style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:6px;">{{ item.titulo }}</p>
+      <p style="font-size:12px;color:var(--muted);">{{ item.descricao }}</p>
+      {% if item.erros %}
+        <p style="font-size:11px;color:#f87171;margin-top:8px;"><strong>Erros:</strong> {{ item.erros }}</p>
+      {% endif %}
+      {% if item.decisoes %}
+        <p style="font-size:11px;color:var(--accent);margin-top:4px;"><strong>Decisões:</strong> {{ item.decisoes }}</p>
+      {% endif %}
+    </div>
+    {% empty %}
+      <p style="font-size:13px;color:var(--muted);">Ainda sem registos no making of. Adiciona entradas pelo admin do Django.</p>
+    {% endfor %}
+  </section>
+
+{% endblock %}

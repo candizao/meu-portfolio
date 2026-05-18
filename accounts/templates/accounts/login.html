@@ -1,0 +1,71 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<section>
+  <div class="sec-head"><h2>Entrar</h2></div>
+
+  {% if messages %}
+    {% for msg in messages %}
+      <p style="font-size:12px;color:{% if msg.tags == 'error' %}#f87171{% else %}var(--accent){% endif %};margin-bottom:16px;">
+        {{ msg }}
+      </p>
+    {% endfor %}
+  {% endif %}
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:600px;">
+
+    <!-- LOGIN NORMAL -->
+    <div>
+      <p style="font-size:11px;color:var(--accent);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;">Username & Password</p>
+      <form method="post" style="display:flex;flex-direction:column;gap:12px;">
+        {% csrf_token %}
+        <div>
+          <label style="display:block;font-size:12px;color:var(--muted);margin-bottom:5px;">Username</label>
+          <input type="text" name="username" required>
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;color:var(--muted);margin-bottom:5px;">Password</label>
+          <input type="password" name="password" required>
+        </div>
+        <button type="submit" class="btn" style="width:fit-content;">Entrar</button>
+      </form>
+      <p style="font-size:12px;color:var(--muted);margin-top:16px;">
+        Não tens conta? <a href="{% url 'registo' %}" style="color:var(--accent);">Regista-te →</a>
+      </p>
+    </div>
+
+    <!-- MAGIC LINK -->
+    <div>
+      <p style="font-size:11px;color:var(--accent);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;">Link Mágico</p>
+      <form method="post" action="{% url 'magic_link_request' %}" style="display:flex;flex-direction:column;gap:12px;">
+        {% csrf_token %}
+        <div>
+          <label style="display:block;font-size:12px;color:var(--muted);margin-bottom:5px;">Email</label>
+          <input type="email" name="email" required placeholder="o teu email">
+        </div>
+        <button type="submit" class="btn btn-ghost" style="width:fit-content;">Enviar link ✉</button>
+      </form>
+      <p style="font-size:12px;color:var(--muted);margin-top:16px;">
+        Recebes um link no email para entrares sem password.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    background: var(--surface);
+    border: 0.5px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 8px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color .15s;
+  }
+  input:focus { border-color: var(--accent); }
+</style>
+{% endblock %}

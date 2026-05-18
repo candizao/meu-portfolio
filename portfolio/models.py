@@ -1,19 +1,17 @@
 from django.db import models
 
+
 # 1. Licenciatura
 class Licenciatura(models.Model):
     nome = models.CharField(max_length=100, default="Informatica de Gestao")
     ano_inicio = models.IntegerField(default=2024)
     ano_previsto_fim = models.IntegerField(default=2027)
     instituicao = models.CharField(max_length=100, default="Universidade Lusófona")
-    descricao = models.TextField(
-        max_length=2000,  
-        blank=True,       
-        default=""        
-    )
+    descricao = models.TextField(max_length=2000, blank=True, default="")
 
     def __str__(self):
         return self.nome
+
 
 # 2. Unidade Curricular
 class UnidadeCurricular(models.Model):
@@ -29,18 +27,36 @@ class UnidadeCurricular(models.Model):
     def __str__(self):
         return f"{self.codigo} - {self.nome}"
 
-# 3. Tecnologia
+
+# 3. Tipo de Tecnologia
+class TipoTecnologia(models.Model):
+    TIPOS = [
+        ('frontend', 'Frontend'),
+        ('backend', 'Backend'),
+        ('base_dados', 'Base de Dados'),
+        ('storage', 'Storage'),
+        ('outros', 'Outros'),
+    ]
+    nome = models.CharField(max_length=50, choices=TIPOS, unique=True)
+
+    def __str__(self):
+        return self.get_nome_display()
+
+
+# 4. Tecnologia
 class Tecnologia(models.Model):
     nome = models.CharField(max_length=50)
     logo = models.ImageField(upload_to='media/tecnologias/', null=True, blank=True)
     website = models.URLField(null=True, blank=True)
     nivel_interesse = models.IntegerField(default=0)
     descricao = models.TextField(null=True, blank=True)
+    tipo = models.ForeignKey('TipoTecnologia', on_delete=models.SET_NULL, null=True, blank=True, related_name='tecnologias')
 
     def __str__(self):
         return self.nome
 
-# 4. Projeto
+
+# 5. Projeto
 class Projeto(models.Model):
     titulo = models.CharField(max_length=100)
     descricao = models.TextField()
@@ -54,7 +70,8 @@ class Projeto(models.Model):
     def __str__(self):
         return self.titulo
 
-# 5. TFC
+
+# 6. TFC
 class TFC(models.Model):
     titulo = models.CharField(max_length=100)
     descricao = models.TextField()
@@ -66,7 +83,8 @@ class TFC(models.Model):
     def __str__(self):
         return self.titulo
 
-# 6. Competência
+
+# 7. Competência
 class Competencia(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.TextField(null=True, blank=True)
@@ -77,7 +95,8 @@ class Competencia(models.Model):
     def __str__(self):
         return self.nome
 
-# 7. Formação
+
+# 8. Formação
 class Formacao(models.Model):
     nome = models.CharField(max_length=100)
     instituicao = models.CharField(max_length=100)
@@ -87,7 +106,8 @@ class Formacao(models.Model):
     def __str__(self):
         return self.nome
 
-# 8. MakingOf
+
+# 9. MakingOf
 class MakingOf(models.Model):
     titulo = models.CharField(max_length=100)
     descricao = models.TextField()
