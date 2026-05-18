@@ -19,8 +19,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "cloudinary_storage",
     "django.contrib.staticfiles",
+    "cloudinary_storage",
     "cloudinary",
     "portfolio",
     "markdownify.apps.MarkdownifyConfig",
@@ -43,6 +43,7 @@ MARKDOWNIFY = {
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -91,9 +92,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # --- Cloudinary ---
 CLOUDINARY_STORAGE = {
@@ -111,5 +110,6 @@ STORAGES = {
     },
 }
 
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'portfolio@gc1412.com'
