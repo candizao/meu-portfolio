@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ tecnologia.nome }}</h1>
+{% if tecnologia.logo %}
+<img src="{{ tecnologia.logo.url }}" alt="{{ tecnologia.nome }}">
+{% endif %}
+<p>Nível de interesse: {{ tecnologia.nivel_interesse }}</p>
+<p>Descrição: {{ tecnologia.descricao }}</p>
+{% if tecnologia.website %}
+<p>Website: <a href="{{ tecnologia.website }}" target="_blank">{{ tecnologia.website }}</a></p>
+{% endif %}
+<h2>Projetos</h2>
+<ul>
+    {% for proj in tecnologia.projeto_set.all %}
+    <li><a href="{% url 'projeto_detail' proj.pk %}">{{ proj.titulo }}</a></li>
+    {% empty %}
+    <li>Nenhum projeto associado.</li>
+    {% endfor %}
+</ul>
+
+<h2>TFCs</h2>
+<ul>
+    {% for tfc in tecnologia.tfc_set.all %}
+    <li><a href="{% url 'tfc_detail' tfc.pk %}">{{ tfc.titulo }}</a></li>
+    {% empty %}
+    <li>Nenhum TFC associado.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

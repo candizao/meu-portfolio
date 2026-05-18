@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Formações</h1>
+<div class="grid">
+    {% for formacao in formacoes %}
+    <div class="card">
+        <h2>{{ formacao.nome }}</h2>
+        <p>{{ formacao.instituicao }} | {{ formacao.ano }}</p>
+        <p>{{ formacao.descricao|truncatechars:150 }}</p>
+        <a href="{% url 'formacao_detail' formacao.pk %}">Ver detalhes</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ competencia.nome }}</h1>
+<p>{{ competencia.descricao }}</p>
+
+<h2>Projetos</h2>
+<ul>
+    {% for proj in competencia.projetos.all %}
+    <li><a href="{% url 'projeto_detail' proj.pk %}">{{ proj.titulo }}</a></li>
+    {% empty %}
+    <li>Nenhum projeto associado.</li>
+    {% endfor %}
+</ul>
+
+<h2>Tecnologias</h2>
+<ul>
+    {% for tech in competencia.tecnologias.all %}
+    <li><a href="{% url 'tecnologia_detail' tech.pk %}">{{ tech.nome }}</a></li>
+    {% empty %}
+    <li>Nenhuma tecnologia associada.</li>
+    {% endfor %}
+</ul>
+
+<h2>Formações</h2>
+<ul>
+    {% for form in competencia.formacoes.all %}
+    <li><a href="{% url 'formacao_detail' form.pk %}">{{ form.nome }}</a></li>
+    {% empty %}
+    <li>Nenhuma formação associada.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>TFCs</h1>
+<div class="grid">
+    {% for tfc in tfcs %}
+    <div class="card">
+        <h2>{{ tfc.titulo }}</h2>
+        <p>{{ tfc.descricao|truncatechars:200 }}</p>
+        <a href="{% url 'tfc_detail' tfc.pk %}">Ver detalhes</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Competências</h1>
+<div class="grid">
+    {% for comp in competencias %}
+    <div class="card">
+        <h2>{{ comp.nome }}</h2>
+        <p>{{ comp.descricao|truncatechars:150 }}</p>
+        <a href="{% url 'competencia_detail' comp.pk %}">Ver detalhes</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

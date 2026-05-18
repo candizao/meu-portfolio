@@ -1,0 +1,167 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="badge"><div class="badge-dot"></div>Disponível para trabalho</div>
+    {% for lic in licenciaturas %}
+      <h1>Olá, sou o <em>GC1412</em><br>Dev Full-Stack</h1>
+      <p>{{ lic.descricao|default:"Estudante de Informática de Gestão na Universidade Lusófona." }}</p>
+    {% empty %}
+      <h1>Olá, sou o <em>GC1412</em><br>Dev Full-Stack</h1>
+      <p>Estudante de Informática de Gestão na Universidade Lusófona.</p>
+    {% endfor %}
+    <a href="#projetos" class="btn">Ver projetos</a>
+    <a href="mailto:seuemail@exemplo.com" class="btn btn-ghost">Contacto</a>
+  </section>
+
+  <!-- PROJETOS -->
+  <section id="projetos">
+    <div class="sec-head">
+      <span class="sec-num">01</span><h2>Projetos</h2>
+      <a href="{% url 'projeto_criar' %}" class="btn" style="margin-left:auto;font-size:11px;padding:5px 12px;">+ Novo</a>
+    </div>
+    <div class="project-list">
+      {% for projeto in projetos %}
+      <div class="project-card">
+        <div>
+          <h3>{{ projeto.titulo }}</h3>
+          <p>{{ projeto.descricao }}</p>
+          <div class="tags">
+            {% for tec in projeto.tecnologias.all %}
+              <span class="tag">{{ tec.nome }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="proj-links">
+          {% if projeto.github %}<a href="{{ projeto.github }}" target="_blank">GitHub ↗</a>{% endif %}
+          {% if projeto.video_demo %}<a href="{{ projeto.video_demo }}" target="_blank">Demo ↗</a>{% endif %}
+          <a href="{% url 'projeto_editar' projeto.pk %}">Editar</a>
+          <a href="{% url 'projeto_apagar' projeto.pk %}" style="color:#f87171;">Apagar</a>
+        </div>
+      </div>
+      {% empty %}
+        <p class="empty">Nenhum projeto ainda. <a href="{% url 'projeto_criar' %}" style="color:var(--accent);">Criar um →</a></p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- UCS -->
+  <section id="ucs">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Unidades Curriculares</h2></div>
+    <div class="uc-grid">
+      {% for uc in ucs %}
+      <a href="{% url 'uc_detail' uc.pk %}" class="uc-card">
+        <div class="uc-code">{{ uc.codigo }}</div>
+        <h3>{{ uc.nome }}</h3>
+        <p>{{ uc.docente }}</p>
+      </a>
+      {% empty %}
+        <p class="empty">Nenhuma UC ainda.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- TECNOLOGIAS -->
+  <section id="tecnologias">
+    <div class="sec-head">
+      <span class="sec-num">03</span><h2>Tecnologias</h2>
+      <a href="{% url 'tecnologia_criar' %}" class="btn" style="margin-left:auto;font-size:11px;padding:5px 12px;">+ Nova</a>
+    </div>
+    <div class="tech-grid">
+      {% for tec in tecnologias %}
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span class="tech-badge">{{ tec.nome }}</span>
+        <a href="{% url 'tecnologia_editar' tec.pk %}" style="font-size:11px;color:var(--muted);text-decoration:none;" title="Editar">✎</a>
+        <a href="{% url 'tecnologia_apagar' tec.pk %}" style="font-size:11px;color:#f87171;text-decoration:none;" title="Apagar">✕</a>
+      </div>
+      {% empty %}
+        <p class="empty">Nenhuma tecnologia ainda. <a href="{% url 'tecnologia_criar' %}" style="color:var(--accent);">Adicionar →</a></p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- FORMAÇÃO -->
+  <section id="formacao">
+    <div class="sec-head">
+      <span class="sec-num">04</span><h2>Formação</h2>
+      <a href="{% url 'formacao_criar' %}" class="btn" style="margin-left:auto;font-size:11px;padding:5px 12px;">+ Nova</a>
+    </div>
+    <div class="timeline">
+      {% for lic in licenciaturas %}
+      <div class="tl-row">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div style="flex:1;">
+          <div class="tl-date">{{ lic.ano_inicio }} — {{ lic.ano_previsto_fim }}</div>
+          <div class="tl-name">{{ lic.nome }}</div>
+          <div class="tl-sub">{{ lic.instituicao }}</div>
+        </div>
+      </div>
+      {% endfor %}
+      {% for form in formacoes %}
+      <div class="tl-row">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div style="flex:1;display:flex;justify-content:space-between;align-items:flex-start;">
+          <div>
+            <div class="tl-date">{{ form.ano }}</div>
+            <div class="tl-name">{{ form.nome }}</div>
+            <div class="tl-sub">{{ form.instituicao }}</div>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <a href="{% url 'formacao_editar' form.pk %}" style="font-size:12px;color:var(--muted);text-decoration:none;">Editar</a>
+            <a href="{% url 'formacao_apagar' form.pk %}" style="font-size:12px;color:#f87171;text-decoration:none;">Apagar</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% if not licenciaturas and not formacoes %}
+        <p class="empty">Nenhuma formação ainda. <a href="{% url 'formacao_criar' %}" style="color:var(--accent);">Adicionar →</a></p>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- TFCS -->
+  <section id="tfcs">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Trabalhos de Fim de Curso</h2></div>
+    <div class="tfc-grid">
+      {% for tfc in tfcs %}
+      <a href="{% url 'tfc_detail' tfc.pk %}" class="tfc-card">
+        <h3>{{ tfc.titulo }}</h3>
+        <p>{{ tfc.descricao }}</p>
+        <div class="tfc-meta">
+          <span>{{ tfc.ano }}</span>
+          <span>Interesse: {{ tfc.interesse }}/10</span>
+        </div>
+      </a>
+      {% empty %}
+        <p class="empty">Nenhum TFC ainda.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- COMPETÊNCIAS -->
+  <section id="competencias">
+    <div class="sec-head">
+      <span class="sec-num">06</span><h2>Competências</h2>
+      <a href="{% url 'competencia_criar' %}" class="btn" style="margin-left:auto;font-size:11px;padding:5px 12px;">+ Nova</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {% for comp in competencias %}
+      <div style="display:flex;justify-content:space-between;align-items:center;background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:12px 14px;">
+        <div>
+          <p style="font-size:13px;font-weight:500;color:var(--text);">{{ comp.nome }}</p>
+          {% if comp.descricao %}<p style="font-size:12px;color:var(--muted);">{{ comp.descricao }}</p>{% endif %}
+        </div>
+        <div style="display:flex;gap:10px;">
+          <a href="{% url 'competencia_editar' comp.pk %}" style="font-size:12px;color:var(--muted);text-decoration:none;">Editar</a>
+          <a href="{% url 'competencia_apagar' comp.pk %}" style="font-size:12px;color:#f87171;text-decoration:none;">Apagar</a>
+        </div>
+      </div>
+      {% empty %}
+        <p class="empty">Nenhuma competência ainda. <a href="{% url 'competencia_criar' %}" style="color:var(--accent);">Adicionar →</a></p>
+      {% endfor %}
+    </div>
+  </section>
+
+{% endblock %}

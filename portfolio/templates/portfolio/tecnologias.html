@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Tecnologias</h1>
+<div class="grid">
+    {% for tech in tecnologias %}
+    <div class="card">
+        <h2>{{ tech.nome }}</h2>
+        {% if tech.logo %}
+        <img src="{{ tech.logo.url }}" alt="{{ tech.nome }}">
+        {% endif %}
+        <p>{{ tech.descricao|truncatechars:150 }}</p>
+        <a href="{% url 'tecnologia_detail' tech.pk %}">Ver detalhes</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

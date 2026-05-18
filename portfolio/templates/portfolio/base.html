@@ -1,0 +1,240 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio — GC1412</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0f0f11;
+      --surface:  #161618;
+      --surface2: #1b1b1e;
+      --border:   rgba(255,255,255,0.08);
+      --accent:   #c8f55a;
+      --text:     #f0ede8;
+      --muted:    rgba(255,255,255,0.38);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(15,15,17,0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 0.5px solid var(--border);
+      display: flex; align-items: center; gap: 24px;
+      padding: 12px 28px;
+    }
+    .nav-logo {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 15px;
+      text-decoration: none;
+      margin-right: auto;
+    }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: color .15s, background .15s;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+    /* LAYOUT */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 48px 0; border-bottom: 0.5px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+
+    /* HERO */
+    #hero { padding: 56px 0 48px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 11px; color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    #hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    #hero h1 em { font-style: normal; color: var(--accent); }
+    #hero p { color: var(--muted); max-width: 380px; font-size: 13px; margin-bottom: 20px; }
+    .btn {
+      display: inline-block;
+      padding: 7px 16px;
+      background: var(--accent);
+      color: #0f0f11;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: opacity .15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 0.5px solid rgba(255,255,255,0.15);
+      margin-left: 8px;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+
+    /* SECTION HEADER */
+    .sec-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 20px; }
+    .sec-num { font-size: 11px; color: var(--accent); }
+    h2 { font-size: 18px; font-weight: 500; color: var(--text); }
+
+    /* PROJECTS */
+    .project-list { display: flex; flex-direction: column; gap: 8px; }
+    .project-card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+      transition: border-color .15s;
+      text-decoration: none;
+    }
+    .project-card:hover { border-color: rgba(200,245,90,0.3); }
+    .project-card h3 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .project-card p { font-size: 12px; color: var(--muted); }
+    .tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
+    .tag {
+      font-size: 10px; padding: 2px 8px;
+      background: rgba(200,245,90,0.07);
+      color: var(--accent);
+      border-radius: 3px;
+    }
+    .proj-links { display: flex; gap: 10px; white-space: nowrap; flex-shrink: 0; }
+    .proj-links a { font-size: 12px; color: var(--accent); text-decoration: none; }
+    .proj-links a:hover { text-decoration: underline; }
+
+    /* TECH */
+    .tech-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tech-badge {
+      font-size: 12px;
+      padding: 5px 12px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 5px;
+      color: var(--text);
+      transition: border-color .15s, color .15s;
+    }
+    .tech-badge:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* TIMELINE */
+    .timeline { display: flex; flex-direction: column; gap: 16px; }
+    .tl-row { display: flex; gap: 12px; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; padding-top: 5px; }
+    .tl-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .tl-line { flex: 1; width: 1px; background: var(--border); margin-top: 5px; }
+    .tl-row:last-child .tl-line { display: none; }
+    .tl-date { font-size: 11px; color: var(--accent); margin-bottom: 2px; }
+    .tl-name { font-size: 13px; font-weight: 500; color: var(--text); }
+    .tl-sub { font-size: 12px; color: var(--muted); }
+
+    /* TFC CARDS */
+    .tfc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 8px; }
+    .tfc-card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      text-decoration: none;
+      display: block;
+      transition: border-color .15s;
+    }
+    .tfc-card:hover { border-color: rgba(200,245,90,0.3); }
+    .tfc-card h3 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 5px; }
+    .tfc-card p { font-size: 12px; color: var(--muted); }
+    .tfc-meta {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 0.5px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex; gap: 12px;
+    }
+
+    /* UCS */
+    .uc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 8px; }
+    .uc-card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-decoration: none;
+      display: block;
+      transition: border-color .15s;
+    }
+    .uc-card:hover { border-color: rgba(200,245,90,0.3); }
+    .uc-card .uc-code { font-size: 10px; color: var(--accent); margin-bottom: 3px; }
+    .uc-card h3 { font-size: 13px; font-weight: 500; color: var(--text); }
+    .uc-card p { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 0.5px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* EMPTY STATE */
+    .empty { font-size: 12px; color: var(--muted); padding: 8px 0; }
+
+    @media (max-width: 580px) {
+      nav { padding: 10px 16px; }
+      .nav-links { display: none; }
+      .container { padding: 0 16px; }
+      .project-card { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="{% url 'home' %}" class="nav-logo">GC1412</a>
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}#projetos">Projetos</a></li>
+      <li><a href="{% url 'home' %}#ucs">UCs</a></li>
+      <li><a href="{% url 'home' %}#tecnologias">Tecnologias</a></li>
+      <li><a href="{% url 'home' %}#formacao">Formação</a></li>
+      <li><a href="{% url 'home' %}#tfcs">TFCs</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <footer>
+    <p>© 2026 GC1412 · <a href="https://github.com/GC1412" target="_blank">GitHub</a> · Feito com Django</p>
+  </footer>
+
+</body>
+</html>

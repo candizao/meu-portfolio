@@ -1,0 +1,28 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<section>
+  <div class="sec-head">
+    <h2>Apagar</h2>
+  </div>
+
+  <p style="color:var(--muted);margin-bottom:20px;">
+    Tens a certeza que queres apagar <strong style="color:var(--text);">{{ objeto }}</strong>? Esta ação não pode ser desfeita.
+  </p>
+
+  <form method="post" style="display:flex;gap:10px;">
+    {% csrf_token %}
+    <button type="submit" style="
+      padding:7px 16px;
+      background:#ef4444;
+      color:#fff;
+      border:none;
+      border-radius:5px;
+      font-size:12px;
+      font-weight:500;
+      cursor:pointer;
+    ">Apagar</button>
+    <a href="{% url cancelar_url %}" class="btn btn-ghost">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

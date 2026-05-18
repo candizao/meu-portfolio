@@ -1,0 +1,53 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<section>
+  <div class="sec-head">
+    <h2>{{ titulo }}</h2>
+  </div>
+
+  <form method="post" enctype="multipart/form-data" style="max-width:520px;">
+    {% csrf_token %}
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      {% for field in form %}
+      <div>
+        <label style="display:block;font-size:12px;color:var(--muted);margin-bottom:5px;">
+          {{ field.label }}
+        </label>
+        {{ field }}
+        {% if field.errors %}
+          <p style="font-size:11px;color:#f87171;margin-top:4px;">{{ field.errors|join:", " }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:24px;">
+      <button type="submit" class="btn">Guardar</button>
+      <a href="{% url cancelar_url %}" class="btn btn-ghost">Cancelar</a>
+    </div>
+  </form>
+</section>
+
+<style>
+  input[type=text], input[type=url], input[type=number], input[type=file],
+  textarea, select {
+    width: 100%;
+    background: var(--surface);
+    border: 0.5px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 8px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color .15s;
+  }
+  input[type=text]:focus, input[type=url]:focus, input[type=number]:focus,
+  textarea:focus, select:focus {
+    border-color: var(--accent);
+  }
+  select[multiple] { height: 120px; }
+  textarea { resize: vertical; min-height: 90px; }
+</style>
+{% endblock %}

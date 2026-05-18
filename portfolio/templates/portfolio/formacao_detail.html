@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ formacao.nome }}</h1>
+<p>Instituição: {{ formacao.instituicao }}</p>
+<p>Ano: {{ formacao.ano }}</p>
+<p>{{ formacao.descricao }}</p>
+
+<h2>Competências associadas</h2>
+<ul>
+    {% for comp in formacao.competencias.all %}
+    <li><a href="{% url 'competencia_detail' comp.pk %}">{{ comp.nome }}</a></li>
+    {% empty %}
+    <li>Nenhuma competência associada.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

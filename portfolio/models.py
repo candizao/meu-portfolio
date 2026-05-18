@@ -7,9 +7,9 @@ class Licenciatura(models.Model):
     ano_previsto_fim = models.IntegerField(default=2027)
     instituicao = models.CharField(max_length=100, default="Universidade Lusófona")
     descricao = models.TextField(
-        max_length=2000,  # dá para meter bastante texto
-        blank=True,       # permite campo vazio
-        default=""        # valor por defeito vazio
+        max_length=2000,  
+        blank=True,       
+        default=""        
     )
 
     def __str__(self):

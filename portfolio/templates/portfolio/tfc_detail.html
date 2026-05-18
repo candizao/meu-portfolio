@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ tfc.titulo }}</h1>
+<p>{{ tfc.descricao }}</p>
+<p>Ano: {{ tfc.ano }}</p>
+<p>Licenciatura: {{ tfc.licenciatura.nome }}</p>
+
+<h2>Tecnologias</h2>
+<ul>
+    {% for tech in tfc.tecnologias.all %}
+    <li><a href="{% url 'tecnologia_detail' tech.pk %}">{{ tech.nome }}</a></li>
+    {% empty %}
+    <li>Nenhuma tecnologia associada.</li>
+    {% endfor %}
+</ul>
+<p>Interesse: {{ tfc.interesse }}</p>
+{% endblock %}
